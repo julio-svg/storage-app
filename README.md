@@ -13,7 +13,7 @@ En cuanto al api, se quería realizar los siguientes endpoints:
 Parámetros:
 > parameter: id. identificador producto.
 ---
-> GET /v1/collections
+> GET /v1/products
 
 Parámetros:
 
@@ -26,7 +26,7 @@ Parámetros:
 Las operaciones de filtrado por un mismo parametro son OR
 
 ---
-> POST /v1/collections
+> POST /v1/products
 
 ---
 
