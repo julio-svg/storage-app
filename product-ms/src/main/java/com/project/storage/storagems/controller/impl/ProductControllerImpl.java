@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -77,8 +79,8 @@ public class ProductControllerImpl {
     ResponseEntity<Void> createProduct(@RequestBody ProductREQDTO productREQDTO) {
         logger.info("Create product");
         try {
-            Map<String, String> headers = new HashMap<>();
-            headers.put("localtion", String.valueOf(productService.createProduct(productREQDTO).getId()));
+            MultiValueMap<String, String> headers = new LinkedMultiValueMap();
+            headers.add("Location", "/products/" + String.valueOf(productService.createProduct(productREQDTO).getId()));
             ResponseEntity<Void> response = new ResponseEntity(headers, HttpStatus.CREATED);
             return response;
         } catch (Exception e) {
