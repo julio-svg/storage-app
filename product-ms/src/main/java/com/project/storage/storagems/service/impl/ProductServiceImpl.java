@@ -102,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
         boolean result = precio == null ||
                 precio.parallelStream()
                         .filter(Objects::nonNull)
-                        .filter(a -> ! a.isBlank())
+                        .filter(a -> ! a.isEmpty())
                         .map(Double::valueOf)
                         .map(idDouble -> 0 == idDouble.compareTo(field))
                         .reduce((a, b) -> a || b)
