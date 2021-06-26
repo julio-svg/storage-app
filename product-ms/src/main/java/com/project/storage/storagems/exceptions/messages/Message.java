@@ -16,6 +16,4 @@ public class Message {
     Type type;
     String description;
     String alias;
-
-
 }

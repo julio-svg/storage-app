@@ -5,6 +5,7 @@ import com.project.storage.storagems.exceptions.NumberIsMandatoryException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -14,9 +15,9 @@ public class ProductoValidatorImpl implements ProductValidator{
     @Override
     public void numericIsMandatory(List<String> params,String field) {
          if(! Stream.ofNullable(params)
-                 .flatMap(a -> a.stream())
+                 .flatMap(Collection::stream)
                  .filter(Objects::nonNull)
-                 .allMatch(param -> StringUtils.isNumeric(param))){
+                 .allMatch(StringUtils::isNumeric)){
             throw new NumberIsMandatoryException(field);
         }
     }

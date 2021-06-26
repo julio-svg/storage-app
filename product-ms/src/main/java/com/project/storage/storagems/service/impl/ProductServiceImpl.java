@@ -26,11 +26,14 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductValidator validator;
 
+    private static final String CTE_ID = "Id";
+    private static final String CTE_PRECIO = "Precio";
+
     @Override
     public List<Product> getAllProducts(List<String> ids, List<String> nombre, List<String> precio) {
 
-        validator.numericIsMandatory(ids,"Id");
-        validator.numericIsMandatory(precio,"Precio");
+        validator.numericIsMandatory(ids, CTE_ID);
+        validator.numericIsMandatory(precio, CTE_PRECIO);
 
         List<ProductDTO> lista = (List<ProductDTO>) productRepository.findAll();
         List<Product> result = lista.stream()
@@ -45,14 +48,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(String id) {
-        validator.numericIsMandatory(id,"Id");
-        return mapper.toProduct(productRepository.findById(Long.parseLong(id)).orElse(null));
+        validator.numericIsMandatory(id,CTE_ID);
+        return mapper.toProduct(productRepository.findById(Long.parseLong(id)).orElse(new ProductDTO()));
     }
 
     @Override
     public Product createProduct(ProductREQDTO productREQDTO) {
         ProductDTO productDTO = new ProductDTO();
-        validator.numericIsMandatory(productREQDTO.getPrecio(),"Precioo");
+        validator.numericIsMandatory(productREQDTO.getPrecio(),"Precio");
         productDTO.setPrecio(Double.valueOf(productREQDTO.getPrecio()));
         productDTO.setNombre(productREQDTO.getNombre());
         return mapper.toProduct(productRepository.save(productDTO));
@@ -61,10 +64,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void modifyProduct(ProductREQDTO productREQDTO, String id) {
-        validator.numericIsMandatory(id,"Id");
-        ProductDTO productDTO = productRepository.findById(Long.parseLong(id)).orElse(null);
+        validator.numericIsMandatory(id,CTE_ID);
+        ProductDTO productDTO = productRepository.findById(Long.parseLong(id)).orElse(new ProductDTO());
         if(productDTO != null) {
-            validator.numericIsMandatory(productREQDTO.getPrecio(),"Precioo");
+            validator.numericIsMandatory(productREQDTO.getPrecio(),"Precio");
             productDTO.setPrecio(Double.valueOf(productREQDTO.getPrecio()));
             productDTO.setNombre(productREQDTO.getNombre());
             productRepository.save(productDTO);
@@ -74,32 +77,29 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(String id) {
+        validator.numericIsMandatory(id,CTE_ID);
         productRepository.delete(new ProductDTO(Long.parseLong(id)));
     }
 
     private boolean filter(Long field, List<String> ids) {
-
-        boolean result = ids == null ||
+        return ids == null ||
                 ids.parallelStream()
                         .map(Long::valueOf)
                         .map(idDouble -> 0 == idDouble.compareTo(field))
                         .reduce((a, b) -> a || b)
                         .orElse(true);
-
-        return result;
     }
 
     private boolean filter(String field, List<String> nombre) {
-        boolean result = nombre == null ||
+        return nombre == null ||
                 nombre.parallelStream()
                         .map(id -> field.toLowerCase().contains(id.toLowerCase()))
                         .reduce((a, b) -> a || b)
                         .orElse(true);
-        return result;
     }
 
     private boolean filter(Double field, List<String> precio) {
-        boolean result = precio == null ||
+        return precio == null ||
                 precio.parallelStream()
                         .filter(Objects::nonNull)
                         .filter(a -> ! a.isEmpty())
@@ -107,8 +107,6 @@ public class ProductServiceImpl implements ProductService {
                         .map(idDouble -> 0 == idDouble.compareTo(field))
                         .reduce((a, b) -> a || b)
                         .orElse(true);
-
-        return result;
     }
 
 

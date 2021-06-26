@@ -9,11 +9,16 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class MainException extends RuntimeException{
 
-    Message men;
-
-    HttpStatus httpStatus;
-
     public MainException() {
         super();
     }
+
+    public MainException(Message men, HttpStatus httpStatus) {
+        this.men = men;
+        this.httpStatus = httpStatus;
+    }
+
+    Message men;
+    HttpStatus httpStatus;
+
 }
