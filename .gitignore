@@ -1,12 +1,12 @@
 HELP.md
 target/
 mvn/wrapper/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
 commons/.mvn/*
-commons/*.cmd
+**/*.cmd
 product-ms/.mvn/*
+**/.mvn/*
 product-ms/*.cmd
 *.cmd
 mvnw
@@ -37,3 +37,5 @@ build/
 ### VS Code ###
 .vscode/
 
+item-ms/.gitignore
+item-ms/.mvn/wrapper/maven-wrapper.jar

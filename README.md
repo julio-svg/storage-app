@@ -1,5 +1,5 @@
 # Storage AP
-Microservicios realizado con Spring Boot, Swagger 2 y Spring Fox. También se utilizar otras librerías útiles como mapstruct, lombok.
+Microservicios realizado con Spring Boot, Swagger 2 y Spring Fox. También se utilizan otras librerías útiles como mapstruct, lombok.
 
 Microservicio Product
 CRUD de productos
@@ -23,7 +23,7 @@ Parámetros:
 >
 > **precios**: String (Optional; default: null)
 
-Las operaciones de filtrado por un mismo parametro son OR
+Las operaciones de filtrado por un mismo parámetro son OR
 
 ---
 > POST /v1/products
@@ -65,7 +65,7 @@ Recursos: Serán las entidades sobre las que actuamos. Las acciones sobre estas 
 
 Path parameters: Siempre seguidos de la entidad a la que hacen referencia. Nunca usar varios seguidos.
 
-Query parameters: Sólo se usarán para los métodos GET que devuelvan una lista. Su propósito sólo puede ser filtrar, paginar, expandir o similares.
+Query parameters: Sólo se usarán para los métodos GET que devuelvan una lista. Su propósito solo puede ser filtrar, paginar, expandir o similares.
 
 Para la salida de los servicios se usará JSON, camelCase, y se incluirá siempre un objeto data que envolverá la salida de cualquier petición.
 

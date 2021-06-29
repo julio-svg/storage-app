@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -29,9 +27,9 @@ public class ProductControllerImpl {
 
     @GetMapping("/products")
     ResponseEntity<ProductAllRSPDTO> getAllProducts(
-            @Valid() @RequestParam(required = false, name = "ids") List<String> id,
-            @Valid() @RequestParam(required = false, name = "nombres") List<String> nombre,
-            @Valid() @RequestParam(required = false, name = "precios") List<String> precio) {
+             @RequestParam(required = false, name = "ids") List<String> id,
+             @RequestParam(required = false, name = "nombres") List<String> nombre,
+             @RequestParam(required = false, name = "precios") List<String> precio) {
         logger.info("Product´s list");
 
         ProductAllRSPDTO allProducts = new ProductAllRSPDTO();
