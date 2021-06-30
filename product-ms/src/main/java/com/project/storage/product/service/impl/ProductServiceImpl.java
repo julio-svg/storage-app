@@ -2,7 +2,7 @@ package com.project.storage.product.service.impl;
 
 import com.project.storage.commons.dto.Product;
 import com.project.storage.commons.dto.models.ProductDTO;
-import com.project.storage.product.controller.rdto.request.ProductREQDTO;
+import com.project.storage.commons.dto.ms.product.rdto.request.ProductREQDTO;
 import com.project.storage.product.repository.ProductRepository;
 import com.project.storage.product.service.ProductService;
 import com.project.storage.product.service.mapper.ProductMapper;

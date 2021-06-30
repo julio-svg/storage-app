@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest()
-class StorageMsApplicationTests {
+class ProductApplicationTests {
 
 	@Test
 	void contextLoads() {

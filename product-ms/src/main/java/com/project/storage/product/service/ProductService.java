@@ -1,7 +1,7 @@
 package com.project.storage.product.service;
 
 import com.project.storage.commons.dto.Product;
-import com.project.storage.product.controller.rdto.request.ProductREQDTO;
+import com.project.storage.commons.dto.ms.product.rdto.request.ProductREQDTO;
 
 import java.util.List;
 

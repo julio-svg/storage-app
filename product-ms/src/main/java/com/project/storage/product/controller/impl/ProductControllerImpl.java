@@ -1,9 +1,9 @@
 package com.project.storage.product.controller.impl;
 
 import com.project.storage.commons.dto.Product;
-import com.project.storage.product.controller.rdto.request.ProductREQDTO;
-import com.project.storage.product.controller.rdto.response.ProductAllRSPDTO;
-import com.project.storage.product.controller.rdto.response.ProductRSPDTO;
+import com.project.storage.commons.dto.ms.product.rdto.request.ProductREQDTO;
+import com.project.storage.commons.dto.ms.product.rdto.response.ProductAllRSPDTO;
+import com.project.storage.commons.dto.ms.product.rdto.response.ProductRSPDTO;
 import com.project.storage.product.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +27,13 @@ public class ProductControllerImpl {
 
     @GetMapping("/products")
     ResponseEntity<ProductAllRSPDTO> getAllProducts(
-             @RequestParam(required = false, name = "ids") List<String> id,
+             @RequestParam(required = false, name = "ids") List<String> ids,
              @RequestParam(required = false, name = "nombres") List<String> nombre,
              @RequestParam(required = false, name = "precios") List<String> precio) {
         logger.info("Product´s list");
 
         ProductAllRSPDTO allProducts = new ProductAllRSPDTO();
-        List<Product> listProducts = productService.getAllProducts(id, nombre, precio);
+        List<Product> listProducts = productService.getAllProducts(ids, nombre, precio);
         HttpStatus httpStatus = null;
 
         if (listProducts.size() != 0) {

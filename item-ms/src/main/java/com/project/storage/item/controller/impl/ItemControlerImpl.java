@@ -1,7 +1,6 @@
 package com.project.storage.item.controller.impl;
 
-import com.project.storage.item.controller.rdto.response.ItemAllRSPDTO;
-import com.project.storage.item.controller.rdto.response.ItemRSPDTO;
+import com.project.storage.commons.dto.ms.item.rdto.response.ItemRSPDTO;
 import com.project.storage.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +16,16 @@ public class ItemControlerImpl {
 
     @GetMapping("items/products/{id}")
     public ResponseEntity<ItemRSPDTO> getItemProduct(@PathVariable() String id, @RequestParam() String quantity){
-        return  new ResponseEntity<>(HttpStatus.OK);
+        ItemRSPDTO itemRSPDTO = new ItemRSPDTO();
+        itemRSPDTO.setData(itemService.getProductWithQuantity(id,quantity));
+        return  new ResponseEntity<>(itemRSPDTO,HttpStatus.OK);
     }
 
     @GetMapping("items/products")
-    public ResponseEntity<ItemAllRSPDTO> getAllItems(){
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<ItemRSPDTO> getAllItems(){
+        ItemRSPDTO itemRSPDTO = new ItemRSPDTO();
+        itemRSPDTO.setData(itemService.getAllProduct());
+        return new ResponseEntity<>(itemRSPDTO,HttpStatus.OK);
     }
 
 }

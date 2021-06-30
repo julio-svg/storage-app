@@ -1,4 +1,4 @@
-package com.project.storage.product.controller.rdto.response;
+package com.project.storage.commons.dto.ms.product.rdto.response;
 
 import com.project.storage.commons.dto.Product;
 import lombok.Getter;

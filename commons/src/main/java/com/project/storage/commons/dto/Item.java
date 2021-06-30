@@ -9,21 +9,27 @@ import java.util.List;
 @Getter
 @Setter
 public class Item {
-
     List<Product> productList;
     Integer quantity;
+    Double total;
+
+    public Item(List<Product> productList, Integer quantity) {
+        this.productList = productList;
+        this.quantity = quantity;
+        this.calculateTotal();
+    }
 
     public Item() {
         productList = new ArrayList<>();
     }
 
-    public Double calculateTotal(){
-        return productList.stream()
+    private void calculateTotal() {
+        productList.stream()
                 .map(Product::getPrecio)
-                .reduce((a,b) -> a + b).orElse(0D);
+                .forEach(a -> this.total = a * quantity);
     }
 
-    public Item addProduct(Product product){
+    public Item addProduct(Product product) {
         productList.add(product);
         return this;
     }
