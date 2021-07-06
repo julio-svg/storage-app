@@ -16,22 +16,25 @@ public class Item {
     public Item(List<Product> productList, Integer quantity) {
         this.productList = productList;
         this.quantity = quantity;
-        this.calculateTotal();
+        this.total = 0D;
+        if( this.productList != null) {
+            this.calculateTotal();
+        }
     }
 
     public Item() {
         productList = new ArrayList<>();
     }
 
+    public Item addProduct(Product product) {
+        productList.add(product);
+        return this;
+    }
+
     private void calculateTotal() {
         productList.stream()
                 .map(Product::getPrecio)
                 .forEach(a -> this.total = a * quantity);
-    }
-
-    public Item addProduct(Product product) {
-        productList.add(product);
-        return this;
     }
 
 }

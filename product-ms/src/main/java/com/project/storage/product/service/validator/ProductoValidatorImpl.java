@@ -1,7 +1,7 @@
 package com.project.storage.product.service.validator;
 
 
-import com.project.storage.product.exceptions.NumberIsMandatoryException;
+import com.project.storage.commons.exceptions.NumberIsMandatoryException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +18,13 @@ public class ProductoValidatorImpl implements ProductValidator{
                  .flatMap(Collection::stream)
                  .filter(Objects::nonNull)
                  .allMatch(StringUtils::isNumeric)){
-            throw new NumberIsMandatoryException(field);
+            throw new NumberIsMandatoryException(String.format("El campo/parametro %s debe ser numerico", field));
         }
     }
     @Override
     public void numericIsMandatory(String param,String field) {
         if(Objects.nonNull(param) && !StringUtils.isNumeric(param)){
-            throw new NumberIsMandatoryException(field);
+            throw new NumberIsMandatoryException(String.format("El campo/parametro %s debe ser numerico", field));
         }
     }
 }

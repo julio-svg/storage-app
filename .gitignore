@@ -3,11 +3,8 @@ target/
 mvn/wrapper/
 !**/src/main/**
 !**/src/test/**
-commons/.mvn/*
 **/*.cmd
-product-ms/.mvn/*
 **/.mvn/*
-product-ms/*.cmd
 *.cmd
 mvnw
 

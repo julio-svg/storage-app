@@ -1,4 +1,4 @@
-package com.project.storage.product.exceptions.messages;
+package com.project.storage.commons.exceptions.messages;
 
 import lombok.Getter;
 import lombok.Setter;
