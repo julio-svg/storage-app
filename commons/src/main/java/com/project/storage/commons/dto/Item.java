@@ -9,9 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 public class Item {
-    List<Product> productList;
-    Integer quantity;
-    Double total;
+    private List<Product> productList;
+    private Integer quantity;
+    private Double total;
 
     public Item(List<Product> productList, Integer quantity) {
         this.productList = productList;

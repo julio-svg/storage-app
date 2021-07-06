@@ -53,11 +53,11 @@ public class ItemServiceImpl implements ItemService {
         return new Item(listProducts, Integer.valueOf(quantity));
     }
 
-    private ResponseEntity<ProductAllRSPDTO> callProduct() {
+    protected ResponseEntity<ProductAllRSPDTO> callProduct() {
         return callProduct(null);
     }
 
-    private ResponseEntity<ProductAllRSPDTO> callProduct(String param) {
+    protected ResponseEntity<ProductAllRSPDTO> callProduct(String param) {
 
         final String URL = "http://localhost:8080/v1/products";
 
